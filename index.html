@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>생일 축하한다</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: black; /* 배경색은 검정 */
+            color: black; /* 기본 글씨 색상을 검정으로 설정 */
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            z-index: 1; /* 텍스트가 위에 오도록 */
+        }
+
+        h1 {
+            font-size: 3em;
+            color: white; /* 제목 글씨 색상 검정 */
+            position: relative; /* 상대 위치 설정 */
+            z-index: 2; /* 텍스트가 위에 오도록 */
+        }
+
+        p {
+            font-size: 1.5em;
+            margin: 30px 0;
+            color: white; /* 문장 글씨 색상 검정 */
+            position: relative; /* 상대 위치 설정 */
+            z-index: 2; /* 텍스트가 위에 오도록 */
+        }
+
+        img {
+            max-width:40%; /* 이미지 크기 조정 */
+            height: auto;
+            position: absolute; /* 절대 위치 */
+            top: 50%; /* 중앙 정렬 */
+            left: 50%; /* 중앙 정렬 */
+            transform: translate(-50%, -50%); /* 중앙 정렬 */
+            z-index: 0; /* 이미지가 뒤에 오도록 */
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: twinkle 1.5s infinite alternate; /* 반짝임 효과 */
+        }
+
+        @keyframes twinkle {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        .firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: explode 1s forwards; /* 폭죽 터지는 애니메이션 */
+        }
+
+        @keyframes explode {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(2);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>생일 진심으로 축하한다 시원티비</h1>
+        <p>오늘은 너의 생일이다<br>너의 생일을 축하한다이 !  🎁<br> 음 너 때문에 코딩을 해서 사이트를 만들줄이야 난 생각못했으 ㅋㅋ <br>뭐 아무튼 거의 5~6년을 붙어있었는데 앞으로도 더 재미있게 지내는 친구가 되어주도록 <br>알겠냐~ 이시키야 코딩만 거의 4시간을 짰다 .. <br>많이 싸우긴 했어도 뭐 재미있게 지냅세<br>내가 뭐 돈이 없어서 친구 몇년동안 생일선물은 준적이 없는디 일단 나중에 돈벌고 그때 주고 받고 <br>하자고 알겠제? ㅋㅋ 암튼 오늘 잘 보내고 다시 한번 축하한다이</p>
+        <img src="시.jpg" alt="생일 축하 이미지">
+    </div>
+
+    <script>
+        // 별빛 생성 함수
+        function createStar() {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            const size = Math.random() * 10 + 5; // 랜덤 사이즈
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.left = Math.random() * 100 + 'vw'; // 랜덤 위치
+            star.style.top = Math.random() * 100 + 'vh'; // 랜덤 위치
+
+            document.body.appendChild(star);
+
+            // 애니메이션 후 별 제거
+            setTimeout(() => {
+                star.remove();
+            }, 1500); // 애니메이션과 같은 시간에 삭제
+        }
+
+        // 폭죽 생성 함수
+        function createFirework() {
+            const firework = document.createElement('div');
+            firework.classList.add('firework');
+            const size = Math.random() * 20 + 5; // 랜덤 크기
+            firework.style.width = size + 'px';
+            firework.style.height = size + 'px';
+            firework.style.left = Math.random() * 100 + 'vw'; // 랜덤 위치
+            firework.style.bottom = '0'; // 화면 아래에서 시작
+
+            document.body.appendChild(firework);
+
+            // 애니메이션 후 폭죽 제거
+            setTimeout(() => {
+                firework.remove();
+            }, 1000); // 폭죽 애니메이션이 끝난 후 제거
+        }
+
+        // 일정 간격으로 별 생성
+        setInterval(createStar, 150); // 0.15초마다 별 생성
+        // 일정 간격으로 폭죽 생성
+        setInterval(createFirework, 2000); // 2초마다 폭죽 생성
+    </script>
+</body>
+</html>
